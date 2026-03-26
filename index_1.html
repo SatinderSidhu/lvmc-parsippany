@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beginner English Class · Literacy Volunteers of Morris County</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #fdf8f2;
+      --gold: #c9933a;
+      --gold-light: #e8b96a;
+      --forest: #2d5a3d;
+      --forest-light: #3d7a53;
+      --text: #1a1a1a;
+      --muted: #6b6b6b;
+      --border: #e8ddd0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── DUAL LANGUAGE STYLES ── */
+    .en { display: block; }
+    .es {
+      display: block;
+      color: var(--gold-light);
+      font-size: 0.88em;
+      font-weight: 300;
+      margin-top: 3px;
+      font-style: italic;
+      opacity: 0.92;
+    }
+    .es-dark {
+      display: block;
+      color: var(--muted);
+      font-size: 0.85em;
+      font-weight: 300;
+      margin-top: 2px;
+      font-style: italic;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--forest);
+      color: white;
+      padding: 70px 24px 90px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(201,147,58,0.25);
+      border: 1px solid var(--gold-light);
+      color: var(--gold-light);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      border-radius: 999px;
+      margin-bottom: 24px;
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 6vw, 60px);
+      line-height: 1.1;
+      margin-bottom: 6px;
+      animation: fadeUp 0.7s ease 0.1s both;
+    }
+    .hero h1 span { color: var(--gold-light); }
+    .hero-h1-es {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(18px, 3.2vw, 34px);
+      color: var(--gold-light);
+      opacity: 0.85;
+      margin-bottom: 28px;
+      font-style: italic;
+      animation: fadeUp 0.7s ease 0.15s both;
+    }
+    .hero-sub {
+      font-size: 16px;
+      font-weight: 300;
+      opacity: 0.85;
+      max-width: 540px;
+      margin: 0 auto 36px;
+      line-height: 1.9;
+      animation: fadeUp 0.7s ease 0.2s both;
+    }
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--gold);
+      color: white;
+      font-weight: 500;
+      font-size: 15px;
+      padding: 14px 32px;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+      animation: fadeUp 0.7s ease 0.3s both;
+      line-height: 1.5;
+      text-align: left;
+    }
+    .hero-cta:hover { background: var(--gold-light); transform: translateY(-2px); }
+    .hero-cta svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+    /* ── WAVE ── */
+    .wave { display: block; margin-top: -2px; }
+
+    /* ── SECTIONS ── */
+    .section { padding: 60px 24px; max-width: 780px; margin: 0 auto; }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      color: var(--forest);
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .section-title .es-title {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--muted);
+      font-style: italic;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+      min-width: 20px;
+    }
+
+    /* ── CARDS ── */
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+    .card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px 20px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+    .card-icon {
+      width: 42px; height: 42px;
+      background: #eef5f1;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 14px;
+      font-size: 20px;
+    }
+    .card-label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 1px; }
+    .card-label-es { font-size: 10px; color: var(--gold); font-style: italic; margin-bottom: 8px; }
+    .card-value { font-size: 16px; font-weight: 500; color: var(--text); line-height: 1.4; }
+    .card-value-es { font-size: 13px; color: var(--muted); font-style: italic; margin-top: 5px; line-height: 1.4; }
+
+    /* ── UPCOMING CLASS ── */
+    .upcoming-card {
+      background: white;
+      border: 2px solid var(--forest);
+      border-radius: 20px;
+      padding: 28px 28px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .upcoming-info { flex: 1; min-width: 180px; }
+    .upcoming-badge {
+      display: inline-block;
+      background: var(--forest);
+      color: white;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+    .upcoming-date {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .upcoming-date-es { font-size: 13px; color: var(--muted); font-style: italic; margin-bottom: 10px; }
+    .upcoming-meta { font-size: 14px; color: var(--muted); line-height: 1.8; }
+    .upcoming-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--forest);
+      color: white;
+      text-decoration: none;
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: background 0.2s, transform 0.2s;
+      white-space: nowrap;
+    }
+    .upcoming-link:hover { background: var(--forest-light); transform: translateY(-2px); }
+
+    /* ── PAST CLASSES ── */
+    .past-list { display: flex; flex-direction: column; gap: 10px; }
+    .past-item {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .past-date { font-size: 15px; font-weight: 500; color: var(--text); }
+    .past-date-es { font-size: 12px; color: var(--muted); font-style: italic; margin-top: 2px; }
+    .past-tag {
+      font-size: 11px;
+      background: #f1efe8;
+      color: #5f5e5a;
+      border-radius: 999px;
+      padding: 3px 12px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    /* ── TUTOR ── */
+    .tutor-block {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .tutor-avatar {
+      width: 84px; height: 84px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 3px solid var(--border);
+    }
+    .tutor-name { font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 4px; }
+    .tutor-role { color: var(--muted); font-size: 13px; margin-bottom: 14px; line-height: 1.7; }
+    .tutor-contact a {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--forest);
+      color: white;
+      text-decoration: none;
+      padding: 10px 22px;
+      border-radius: 999px;
+      font-size: 15px;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+    .tutor-contact a:hover { background: var(--forest-light); }
+
+    /* ── CONFIRM ── */
+    .confirm-section { text-align: center; padding: 36px 24px 60px; }
+    .confirm-btn {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: var(--forest);
+      color: white;
+      font-size: 17px;
+      font-weight: 500;
+      padding: 18px 44px;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+      box-shadow: 0 8px 30px rgba(45,90,61,0.3);
+      line-height: 1.5;
+      text-align: left;
+    }
+    .confirm-btn:hover { background: var(--forest-light); transform: translateY(-2px); }
+    .confirm-sub { margin-top: 18px; color: var(--muted); font-size: 14px; line-height: 1.9; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--forest);
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      padding: 28px 24px;
+      font-size: 13px;
+      line-height: 2;
+    }
+    footer strong { color: rgba(255,255,255,0.9); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 520px) {
+      .tutor-block { flex-direction: column; text-align: center; }
+      .tutor-avatar { margin: 0 auto; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Literacy Volunteers of Morris County</div>
+
+  <h1>Beginner <span>English</span> Class</h1>
+  <p class="hero-h1-es">Clase de Inglés para Principiantes</p>
+
+  <p class="hero-sub">
+    <span class="en">Offered by <strong style="color:var(--gold-light);">Literacy Volunteers of Morris County</strong> at <strong style="color:var(--gold-light);">Parsippany Library</strong> — every Thursday.</span>
+    <span class="es">Ofrecido por <strong style="color:var(--gold-light);">Literacy Volunteers of Morris County</strong> en la <strong style="color:var(--gold-light);">Biblioteca de Parsippany</strong> — todos los jueves.</span>
+  </p>
+
+  <a href="#confirm" class="hero-cta">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    <span>Confirm Your Spot<br><em style="font-size:12px;opacity:0.85;">Confirmar mi asistencia</em></span>
+  </a>
+</section>
+
+<svg class="wave" viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" height="50">
+  <path d="M0,50 C360,0 1080,0 1440,50 L1440,0 L0,0 Z" fill="#2d5a3d"/>
+</svg>
+
+<!-- UPCOMING CLASS -->
+<div class="section fade-in">
+  <h2 class="section-title">📅 Next Class <span class="es-title">/ Próxima Clase</span></h2>
+  <div class="upcoming-card">
+    <div class="upcoming-info">
+      <div class="upcoming-badge">Upcoming · Próxima</div>
+      <div class="upcoming-date">Thursday, March 26, 2026</div>
+      <div class="upcoming-date-es">Jueves, 26 de marzo de 2026</div>
+      <div class="upcoming-meta">
+        ⏰ 5:30 PM – 6:30 PM &nbsp;·&nbsp; 📍 Group Study Room 2, Main Library<br>
+        <em style="font-size:13px;">Salón de Estudio 2, Biblioteca Principal</em>
+      </div>
+    </div>
+    <a href="class2.html" class="upcoming-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      <span>Class 2 Plan<br><em style="font-size:11px;opacity:0.85;">Ver plan de clase</em></span>
+    </a>
+  </div>
+</div>
+
+<!-- PAST CLASSES -->
+<div class="section fade-in" style="padding-top: 0;">
+  <h2 class="section-title">✅ Past Classes <span class="es-title">/ Clases Anteriores</span></h2>
+  <div class="past-list">
+    <div class="past-item">
+      <div>
+        <div class="past-date">Thursday, March 19, 2026 — Class 1</div>
+        <div class="past-date-es">Jueves, 19 de marzo de 2026 · Primera clase</div>
+      </div>
+      <span class="past-tag">✓ Completed</span>
+    </div>
+  </div>
+</div>
+
+<!-- TUTOR -->
+<div class="section fade-in" style="padding-top: 0;">
+  <h2 class="section-title">👤 Your Tutor <span class="es-title">/ Su Tutora</span></h2>
+  <div class="tutor-block">
+    <img class="tutor-avatar" src="data:image/jpeg;base64,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" alt="Satinder Sidhu" />
+    <div>
+      <div class="tutor-name">Satinder Sidhu</div>
+      <div class="tutor-role">
+        English Language Tutor · Beginner Class<br>
+        <em>Tutora de Inglés · Clase para Principiantes</em>
+      </div>
+      <div class="tutor-contact">
+        <a href="tel:2017097071">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.44 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 17z"/></svg>
+          Call / Llamar: 201.709.7071
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONFIRM -->
+<div class="confirm-section fade-in" id="confirm">
+  <a class="confirm-btn" href="tel:2017097071">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+    <span>Confirm My Attendance<br><em style="font-size:13px;opacity:0.85;">Confirmar mi asistencia</em></span>
+  </a>
+  <p class="confirm-sub">
+    Call or text Satinder Sidhu at <strong>201.709.7071</strong> to let her know you're coming.<br>
+    <em>Llame o envíe un mensaje de texto a Satinder Sidhu al <strong>201.709.7071</strong> para avisarle que va a asistir.</em>
+  </p>
+</div>
+
+<!-- MAP & DIRECTIONS -->
+<!-- FOOTER -->
+<footer>
+  <p><strong>Literacy Volunteers of Morris County</strong></p>
+  <p>Beginner English Class &nbsp;·&nbsp; <em>Clase de Inglés para Principiantes</em></p>
+  <p>Tutor: <strong>Satinder Sidhu</strong> &nbsp;·&nbsp; Every Thursday / Todos los jueves &nbsp;·&nbsp; <strong>Parsippany Library</strong></p>
+  <p style="margin-top:4px;">Questions? / ¿Preguntas? Call or text / Llame o escriba: <strong>201.709.7071</strong></p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

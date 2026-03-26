@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Second Class Lesson Plan · Beginner English</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #fdf8f2;
+      --forest: #2d5a3d;
+      --forest-light: #3d7a53;
+      --gold: #c9933a;
+      --gold-light: #e8b96a;
+      --text: #1a1a1a;
+      --muted: #6b6b6b;
+      --border: #e8ddd0;
+      --white: #ffffff;
+    }
+
+    /* ── NAV ── */
+    .site-nav {
+      background: var(--forest);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      margin: -40px -24px 40px;
+    }
+    .site-nav ul {
+      display: flex;
+      list-style: none;
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px;
+      gap: 0;
+    }
+    .site-nav ul li a {
+      display: block;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 14px 18px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+    .site-nav ul li a:hover { color: white; }
+    .site-nav ul li a.active {
+      color: var(--gold-light);
+      border-bottom-color: var(--gold-light);
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 40px 24px 60px;
+    }
+    header {
+      max-width: 700px;
+      margin: 0 auto 36px;
+    }
+    .badge {
+      display: inline-block;
+      background: var(--forest);
+      color: rgba(255,255,255,0.85);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(26px, 5vw, 40px);
+      color: var(--forest);
+      line-height: 1.15;
+      margin-bottom: 6px;
+    }
+    .subtitle {
+      font-size: 14px;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* ── OVERVIEW BAR ── */
+    .overview {
+      max-width: 700px;
+      margin: 0 auto 28px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .ov-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 14px;
+      text-align: center;
+    }
+    .ov-icon { font-size: 20px; margin-bottom: 4px; }
+    .ov-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
+    .ov-value { font-size: 14px; font-weight: 500; margin-top: 2px; }
+
+    /* ── PLAN ── */
+    .plan {
+      max-width: 700px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .block {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .time-badge {
+      min-width: 68px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 7px 8px;
+      line-height: 1.4;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .time-badge span {
+      display: block;
+      font-size: 10px;
+      color: #aaa;
+      font-weight: 400;
+      margin-top: 1px;
+    }
+    .card {
+      flex: 1;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 18px;
+    }
+    .card-head {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
+    }
+    .pill {
+      font-size: 10px;
+      font-weight: 500;
+      padding: 3px 10px;
+      border-radius: 999px;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+    }
+    .pill-warmup  { background: #e1f5ee; color: #0f6e56; }
+    .pill-read    { background: #faeeda; color: #854f0b; }
+    .pill-vocab   { background: #eeedfe; color: #3c3489; }
+    .pill-speak   { background: #fde8f5; color: #8b1f6b; }
+    .pill-wrap    { background: #f1efe8; color: #5f5e5a; }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text);
+    }
+    .card-body {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .card-es {
+      font-size: 12px;
+      color: #aaa;
+      font-style: italic;
+      margin-top: 4px;
+    }
+    .tip {
+      font-size: 13px;
+      color: var(--muted);
+      background: var(--cream);
+      border-left: 3px solid var(--border);
+      border-radius: 0 6px 6px 0;
+      padding: 7px 12px;
+      margin-top: 10px;
+      line-height: 1.65;
+    }
+
+    /* ── STORY SECTION ── */
+    .story-box {
+      background: #f5f9f6;
+      border: 1px solid #c8dfd0;
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin-top: 12px;
+    }
+    .story-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      color: var(--forest);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .story-text {
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.95;
+    }
+    .story-text .highlight {
+      background: #fff3cd;
+      border-radius: 3px;
+      padding: 0 3px;
+      font-weight: 500;
+      color: #7a4f00;
+    }
+    .story-es {
+      font-size: 12px;
+      color: var(--muted);
+      font-style: italic;
+      margin-top: 10px;
+      border-top: 1px solid var(--border);
+      padding-top: 8px;
+      line-height: 1.7;
+    }
+    .story-qs {
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+    }
+    .story-qs-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+    .story-qs ol {
+      padding-left: 18px;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+
+    /* ── VOCAB TABLE ── */
+    .vocab-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 14px;
+    }
+    .vocab-table th {
+      text-align: left;
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 6px 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .vocab-table td {
+      padding: 9px 10px;
+      border-bottom: 1px solid #f0e8df;
+      vertical-align: top;
+      line-height: 1.5;
+    }
+    .vocab-table tr:last-child td { border-bottom: none; }
+    .vocab-word {
+      font-weight: 500;
+      color: var(--forest);
+      font-size: 15px;
+    }
+    .vocab-es {
+      font-size: 12px;
+      color: var(--gold);
+      font-style: italic;
+    }
+    .vocab-example {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* ── SPEAKING SCENARIOS ── */
+    .scenario {
+      background: #fdf2fa;
+      border: 1px solid #f0d5ec;
+      border-radius: 10px;
+      padding: 13px 16px;
+      margin-top: 10px;
+    }
+    .scenario + .scenario { margin-top: 8px; }
+    .scenario-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #8b1f6b;
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+    .scenario-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .scenario-body {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+    .scenario-starter {
+      margin-top: 6px;
+      font-size: 13px;
+      color: var(--forest);
+      font-weight: 500;
+    }
+    .scenario-es {
+      font-size: 12px;
+      color: #aaa;
+      font-style: italic;
+      margin-top: 3px;
+    }
+
+    /* ── MATERIALS NEEDED ── */
+    .materials {
+      max-width: 700px;
+      margin: 24px auto 0;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 20px;
+    }
+    .materials-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--forest);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+    .materials ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .materials ul li {
+      font-size: 13px;
+      color: var(--muted);
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 4px 14px;
+    }
+
+    footer {
+      max-width: 700px;
+      margin: 40px auto 0;
+      text-align: center;
+      font-size: 12px;
+      color: #bbb;
+    }
+
+    @media print {
+      body { padding: 20px; }
+      .card:hover { transform: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <ul>
+    <li><a href="index.html">🏠 Home</a></li>
+    <li><a href="class2.html" class="active">📖 Class 2</a></li>
+  </ul>
+</nav>
+
+<header>
+  <div class="badge">Literacy Volunteers of Morris County — Class 2</div>
+  <h1>Second Class Lesson Plan</h1>
+  <p class="subtitle">Beginner English · Thursday 5:30–6:30 PM · Parsippany Library</p>
+</header>
+
+<!-- Overview -->
+<div class="overview">
+  <div class="ov-card">
+    <div class="ov-icon">📖</div>
+    <div class="ov-label">Reading</div>
+    <div class="ov-value">A Simple Story</div>
+  </div>
+  <div class="ov-card">
+    <div class="ov-icon">💬</div>
+    <div class="ov-label">Vocabulary</div>
+    <div class="ov-value">5 Daily Words</div>
+  </div>
+  <div class="ov-card">
+    <div class="ov-icon">🗣️</div>
+    <div class="ov-label">Speaking</div>
+    <div class="ov-value">Real Situations</div>
+  </div>
+</div>
+
+<div class="plan">
+
+  <!-- WARM-UP -->
+  <div class="block">
+    <div class="time-badge">5:30 <span>5 min</span></div>
+    <div class="card">
+      <div class="card-head">
+        <span class="pill pill-warmup">Warm-up</span>
+        <span class="card-title">Greet & review from last class</span>
+      </div>
+      <div class="card-body">
+        Greet each student by name. Ask: "How are you?" — encourage them to answer in English. Quickly review last week: "Do you remember numbers 1–10? Let's say them together!" This builds confidence and continuity.
+      </div>
+      <div class="card-es">Bienvenida · Repaso de la clase anterior</div>
+    </div>
+  </div>
+
+  <!-- READING -->
+  <div class="block">
+    <div class="time-badge">5:35 <span>15 min</span></div>
+    <div class="card">
+      <div class="card-head">
+        <span class="pill pill-read">Reading</span>
+        <span class="card-title">A simple story — "Maria's Morning"</span>
+      </div>
+      <div class="card-body">
+        Read the story aloud first while students follow along. Then read sentence by sentence, asking students to repeat. Finally, ask volunteers to read one sentence each.
+      </div>
+      <div class="card-es">Lectura · historia corta en inglés simple</div>
+
+      <!-- THE STORY -->
+      <div class="story-box">
+        <div class="story-title">📄 Maria's Morning</div>
+        <div class="story-text">
+          My name is <span class="highlight">Maria</span>. I wake up at 7 o'clock in the morning.<br>
+          I go to the <span class="highlight">kitchen</span>. I make coffee. The coffee is hot and <span class="highlight">good</span>.<br>
+          I eat breakfast. I eat <span class="highlight">bread</span> and an egg.<br>
+          I <span class="highlight">go</span> to work at 8 o'clock. I take the bus.<br>
+          The bus is full. I stand. I am tired, but I am happy.<br>
+          At work, my boss says, "Good morning, Maria!" I say, "<span class="highlight">Good morning</span>!"<br>
+          I work hard. At 5 o'clock, I go home. I am hungry.<br>
+          I cook dinner. I eat with my family. I love my family.<br>
+          At night, I go to sleep. It is a good day.
+        </div>
+        <div class="story-es">
+          Mi nombre es María. Me despierto a las 7 de la mañana. Voy a la cocina. Hago café...
+          <em>(historia completa en el papel para los estudiantes)</em>
+        </div>
+        <div class="story-qs">
+          <div class="story-qs-label">📋 Comprehension Questions — Ask Aloud</div>
+          <ol>
+            <li>What time does Maria wake up?</li>
+            <li>What does Maria eat for breakfast?</li>
+            <li>How does Maria go to work?</li>
+            <li>What does Maria do at night?</li>
+            <li>Is Maria happy? (Yes / No)</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="tip">📋 <strong>Assess:</strong> Can students follow the story as you read? Can they answer simple questions? Note who tracked well vs. who got lost — that's your reading comprehension baseline.</div>
+    </div>
+  </div>
+
+  <!-- VOCABULARY -->
+  <div class="block">
+    <div class="time-badge">5:50 <span>15 min</span></div>
+    <div class="card">
+      <div class="card-head">
+        <span class="pill pill-vocab">Vocabulary</span>
+        <span class="card-title">5 common daily words</span>
+      </div>
+      <div class="card-body">
+        Introduce each word with a picture or action. Say the word, have students repeat it. Show a simple sentence. Then go through all 5 and say: "Point to the word for ___."
+      </div>
+      <div class="card-es">Vocabulario · 5 palabras del día a día</div>
+
+      <table class="vocab-table">
+        <thead>
+          <tr>
+            <th>Word / Palabra</th>
+            <th>Meaning</th>
+            <th>Example Sentence</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="vocab-word">eat</div>
+              <div class="vocab-es">comer</div>
+            </td>
+            <td>to put food in your mouth</td>
+            <td class="vocab-example">I eat breakfast every morning.</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="vocab-word">drink</div>
+              <div class="vocab-es">beber / tomar</div>
+            </td>
+            <td>to have water, juice, or coffee</td>
+            <td class="vocab-example">I drink water every day.</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="vocab-word">go</div>
+              <div class="vocab-es">ir</div>
+            </td>
+            <td>to move from one place to another</td>
+            <td class="vocab-example">I go to work at 8 o'clock.</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="vocab-word">need</div>
+              <div class="vocab-es">necesitar</div>
+            </td>
+            <td>something important, you must have it</td>
+            <td class="vocab-example">I need water. I need help.</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="vocab-word">want</div>
+              <div class="vocab-es">querer</div>
+            </td>
+            <td>something you would like to have</td>
+            <td class="vocab-example">I want coffee, please.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="tip">💡 <strong>Quick game:</strong> Call out the Spanish word and have students call back the English word. Fast and fun!</div>
+    </div>
+  </div>
+
+  <!-- SPEAKING -->
+  <div class="block">
+    <div class="time-badge">6:05 <span>18 min</span></div>
+    <div class="card">
+      <div class="card-head">
+        <span class="pill pill-speak">Speaking</span>
+        <span class="card-title">Real-life situations — "What do you say?"</span>
+      </div>
+      <div class="card-body">
+        Present each situation. Act it out yourself first. Then ask students to try — even just one or two words is great. Praise every attempt. There are no wrong answers.
+      </div>
+      <div class="card-es">Hablar · situaciones de la vida real</div>
+
+      <div class="scenario">
+        <div class="scenario-label">Situation 1</div>
+        <div class="scenario-title">🛒 You are at the store. You want water.</div>
+        <div class="scenario-body">The cashier asks: "Can I help you?" — What do you say?</div>
+        <div class="scenario-starter">Starter: "I want water, please." / "I need water."</div>
+        <div class="scenario-es">Estás en la tienda y quieres agua. ¿Qué dices?</div>
+      </div>
+
+      <div class="scenario">
+        <div class="scenario-label">Situation 2</div>
+        <div class="scenario-title">🏥 You are at the doctor. You don't feel good.</div>
+        <div class="scenario-body">The doctor says: "How are you today?" — What do you say?</div>
+        <div class="scenario-starter">Starter: "I don't feel good." / "I am sick." / "My head hurts."</div>
+        <div class="scenario-es">Estás en el médico. No te sientes bien. ¿Qué dices?</div>
+      </div>
+
+      <div class="scenario">
+        <div class="scenario-label">Situation 3</div>
+        <div class="scenario-title">🚌 You are on the bus. You don't know where to get off.</div>
+        <div class="scenario-body">You need to ask someone for help. — What do you say?</div>
+        <div class="scenario-starter">Starter: "Excuse me. I need help, please." / "Where is ___?"</div>
+        <div class="scenario-es">Estás en el autobús y no sabes dónde bajarte. ¿Qué dices?</div>
+      </div>
+
+      <div class="tip">📋 <strong>Assess:</strong> Who tried to speak? Who needed the starter phrase? Who made up their own sentence? Note confidence levels — this is your speaking progress tracker.</div>
+    </div>
+  </div>
+
+  <!-- WRAP-UP -->
+  <div class="block">
+    <div class="time-badge">6:23 <span>7 min</span></div>
+    <div class="card">
+      <div class="card-head">
+        <span class="pill pill-wrap">Wrap-up</span>
+        <span class="card-title">Review + "See you Thursday!"</span>
+      </div>
+      <div class="card-body">
+        Point to each vocab word and ask the class together: "What is this word?" — Then say: "Today we read a story. We learned 5 words. We practiced speaking." Go around and say goodbye to each student by name. Remind them of the class website and your phone number.
+      </div>
+      <div class="card-es">Repaso · "¡Hasta el próximo jueves!"</div>
+      <div class="tip">💡 After class: Update your notes for each student on reading ability, speaking confidence, and vocabulary retention. You now have two data points — look for growth.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Materials needed -->
+<div class="materials">
+  <div class="materials-title">📦 Materials to Bring</div>
+  <ul>
+    <li>📄 Printed story handout — "Maria's Morning"</li>
+    <li>📋 Vocabulary word cards or sheet</li>
+    <li>✏️ Pencils for students</li>
+    <li>🖼️ Pictures for vocab words (optional but helpful)</li>
+    <li>📱 Class website link ready to share</li>
+  </ul>
+</div>
+
+<footer>
+  Satinder Sidhu · Literacy Volunteers of Morris County · Parsippany Library · Class 2
+</footer>
+
+</body>
+</html>
